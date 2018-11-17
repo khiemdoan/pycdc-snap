@@ -1,0 +1,30 @@
+name: pycdc
+version: latest
+version-script: cat $SNAPCRAFT_STAGE/version
+summary: C++ python bytecode disassembler and decompiler
+description: |
+  Decompyle++
+  A Python Byte-code Disassembler/Decompiler
+  Decompyle++ aims to translate compiled Python byte-code back into valid and human-readable Python source code. While other projects have achieved this with varied success, Decompyle++ is unique in that it seeks to support byte-code from any version of Python.
+  Decompyle++ includes both a byte-code disassembler (pycdc.pycdas) and a decompiler (pycdc).
+
+grade: stable
+confinement: strict
+
+apps:
+  pycdc:
+    command: pycdc
+    plugs: [home]
+  pycdas:
+    command: pycdas
+    plugs: [home]
+
+parts:
+  pycdc:
+    source: https://github.com/zrax/pycdc.git
+    plugin: cmake
+    build-packages:
+      - build-essential
+    override-prime: |
+      snapcraftctl prime
+      echo $(git ls-remote https://github.com/zrax/pycdc.git --heads HEAD | cut -c1-8) > $SNAPCRAFT_STAGE/version
