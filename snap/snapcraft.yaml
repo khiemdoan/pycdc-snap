@@ -1,7 +1,7 @@
 name: pycdc
 version: latest
 version-script: cat $SNAPCRAFT_STAGE/version
-summary: C++ python bytecode disassembler and decompiler
+summary: A Python Byte-code Disassembler/Decompiler
 description: |
   Decompyle++
   A Python Byte-code Disassembler/Decompiler
